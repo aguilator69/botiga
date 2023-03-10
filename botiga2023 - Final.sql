@@ -1,0 +1,56 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+CREATE DATABASE IF NOT EXISTS botiga2023;
+USE botiga2023;
+
+DROP TABLE IF EXISTS compra;
+CREATE TABLE IF NOT EXISTS compra (
+  codiCompra int(11) NOT NULL AUTO_INCREMENT,
+  data date DEFAULT NULL,
+  email varchar(100) NOT NULL,
+  PRIMARY KEY (codiCompra)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS usuari;
+CREATE TABLE IF NOT EXISTS usuari (
+  email varchar(100) NOT NULL,
+  password varchar(32) DEFAULT NULL,
+  nom varchar(20) DEFAULT NULL,
+  cognoms varchar(50) DEFAULT NULL,
+  direccio varchar(50) DEFAULT NULL,
+  poblacio varchar(50) DEFAULT NULL,
+  cPostal varchar(5) DEFAULT NULL,
+  dadesFoto longblob,
+  tipusFoto varchar(12) DEFAULT NULL,
+  PRIMARY KEY (email)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS producte;
+CREATE TABLE IF NOT EXISTS producte (
+  codiProducte int(11) NOT NULL AUTO_INCREMENT,
+  nom varchar(20) NOT NULL,
+  descripcio text NOT NULL,
+  preu int(8) NOT NULL,
+  stock int(5),
+  dadesImatge longblob,
+  tipusImatge varchar(12) DEFAULT NULL,
+  contingut text,
+  PRIMARY KEY (codiProducte)
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS comanda;
+CREATE TABLE IF NOT EXISTS comanda (
+  codiComanda int(11) NOT NULL AUTO_INCREMENT,
+  codiCompra int(11) NOT NULL,
+  codiProducte int(11) NOT NULL,
+  PRIMARY KEY (codiComanda)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
